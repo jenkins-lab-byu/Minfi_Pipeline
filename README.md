@@ -1,1 +1,1 @@
-# Minfi_Pipeline
+# Minfi Pipeline

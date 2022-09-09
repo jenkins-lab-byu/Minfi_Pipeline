@@ -170,5 +170,22 @@ if(write_mvals){
   write.table(MValues,file=paste(output_dir,run_name,'_m_values.csv',sep=''),row.names = T, col.names = T, sep = ",", quote = F)
 }
 
+  ############
+  # snp data #
+  ############
+  cat("\n**GRABBING AND WRITING P-Values**\n\n")
+  detp<-detectionP(RGset,type="m+u")
+  # detp<-t(detp)
+  write.table(detp,file=paste(output_dir,run_name,'_p_values.csv',sep=''),row.names = T, col.names = T, sep = ",", quote = F)
 
+  ###get unmethylated values
+  cat("\n**GRABBING AND WRITING Unmethylated Points**\n\n")
+  unmethylated_points<-getUnmeth(grSet)
+  # unmethylated_points<-t(unmethylated_points)
+  write.table(unmethylated_points,file=paste(output_dir,run_name,'_unmethylated_points.csv',sep=''),row.names = T, col.names = T, sep = ",", quote = F)
 
+  ###get methylated values
+  cat("\n**GRABBING AND WRITING Methylated Points**\n\n")
+  methylated_points<-getMeth(grSet)
+  # methylated_points<-t(methylated_points)
+  write.table(methylated_points,file=paste(output_dir,run_name,'_methylated_points.csv',sep=''),row.names = T, col.names = T, sep = ",", quote = F)

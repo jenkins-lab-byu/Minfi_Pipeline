@@ -3,10 +3,10 @@
 script_base=/Volumes/Research_Data/Jenkins_Lab_Github/Minfi_Pipeline/
 
 # Pathname to the basedirectory that contains all files relevant to the study
-base_dir="/Volumes/Research_Data/Research_Datasets/Sperm/Contamination_Data/Contamination_array"
+base_dir="/Volumes/Research_Data/Research_Datasets/Atherosclerosis_Tissue/Atherosclerotic_Plaques_450K"
 
 #Name of the basedirectory that contains all files relevant to the study (Make sure it is just the name of the directory, not the pathname)
-name=Contamination_array
+name=Atherosclerotic_Plaques_450K
 
 # Name of the Sample Sheet inside your basedirectory that contains all the sample metadata. (Make sure the first three columns are 'Sample_Name','Sentrix_ID','Sentrix_Position')
 sample_sheet=sample_sheet.csv

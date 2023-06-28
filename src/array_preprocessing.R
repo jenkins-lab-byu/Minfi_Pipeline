@@ -4,6 +4,7 @@ suppressPackageStartupMessages(library(minfi))
 suppressPackageStartupMessages(library(glmnet))
 suppressPackageStartupMessages(library(tidyr))
 suppressPackageStartupMessages(library(argparse))
+suppressPackageStartupMessages(library(BiocManager))
 #source("calc_sperm_age.R")
 
 ## set up parser
@@ -73,6 +74,8 @@ targets = read.metharray.sheet(base=input_dir, pattern = sample_sheet, ignore.ca
 ## load methylation data
 cat("\n**LOADING IDAT FILES**\n\n")
 RGset<-read.metharray.exp(targets=targets,recursive=TRUE,force=TRUE)
+annotation(RGset)["array"] = "IlluminaHumanMethylationEPICv2"
+annotation(RGset)["annotation"] = "20a1.hg38"
 
 ## normalize data
 cat("\n**NORMALIZING DATA (SWAN)**\n\n")
@@ -97,7 +100,7 @@ array_type=''
 ## sperm age, dlk1, intensities, snps
 if(analyze){
   
-  # sperm age
+  sperm age
   cat("\n**CALCULATING SPERM AGE**\n\n")
   sperm_age_calculations=calc_sperm_age(BetaValues,model)
   colnames(sperm_age_calculations)=c("Sperm_Age")
@@ -108,7 +111,11 @@ if(analyze){
     cat("\n**THIS LOOKS LIKE 450K DATA**\n\n")
     array_type='450k'
   }
-  else{
+  else if(ncol(BetaValues)>=900000){
+    cat("\n**THIS LOOKS LIKE EPICv2 DATA**\n\n")
+    array_type='EPIC'
+  }
+  else {
     cat("\n**THIS LOOKS LIKE EPIC DATA**\n\n")
     array_type='EPIC'
   }
